@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.env
+server/.env
+server/data/products.json
+server/uploads/*
+!server/uploads/.gitkeep

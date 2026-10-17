@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 66" role="img" aria-labelledby="title">
+  <title id="title">Nooha — pillows and mattresses</title>
+  <g font-family="Arial, Helvetica, sans-serif" font-weight="300">
+    <text x="2" y="40" fill="#cb7c3c" font-size="42">n</text>
+    <circle cx="52" cy="27" r="17.5" fill="#f8f6f1" stroke="#cb7c3c" stroke-width="4"/>
+    <circle cx="78" cy="27" r="17.5" fill="#f8f6f1" stroke="#292820" stroke-width="4"/>
+    <text x="101" y="40" fill="#cb7c3c" font-size="42">h</text>
+    <text x="129" y="40" fill="#cb7c3c" font-size="42">a</text>
+  </g>
+  <text x="3" y="60" fill="#77766b" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="600" letter-spacing="1.65">PILLOWS AND MATTRESSES</text>
+</svg>

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">A softer place to land</title>
+  <desc id="desc">An illustrated, sunlit bedroom with a soft bed, plump pillows and warm natural colors.</desc>
+  <defs>
+    <linearGradient id="wall" x2="1" y2="1">
+      <stop stop-color="#d9c7af"/>
+      <stop offset=".62" stop-color="#eee3d4"/>
+      <stop offset="1" stop-color="#cbb69c"/>
+    </linearGradient>
+    <linearGradient id="sunlight" x2=".9" y2="1">
+      <stop stop-color="#fff8e8" stop-opacity=".84"/>
+      <stop offset="1" stop-color="#f3cf91" stop-opacity=".08"/>
+    </linearGradient>
+    <linearGradient id="linen" x2=".2" y2="1">
+      <stop stop-color="#fffdf8"/>
+      <stop offset="1" stop-color="#e6ddd0"/>
+    </linearGradient>
+    <linearGradient id="cover" x2=".7" y2="1">
+      <stop stop-color="#b6a18b"/>
+      <stop offset="1" stop-color="#8d7965"/>
+    </linearGradient>
+    <filter id="shadow" x="-.2" y="-.2" width="1.4" height="1.6">
+      <feGaussianBlur stdDeviation="24"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="900" fill="url(#wall)"/>
+  <path d="M0 0h430v590H0z" fill="#efe7dc"/>
+  <path d="M30 0h335v515H30z" fill="#b4a18c"/>
+  <path d="M50 0h295v480H50z" fill="#d7e0df"/>
+  <path d="M50 0h145v480H50z" fill="#f3eee4" opacity=".52"/>
+  <path d="M201 0v480M50 240h295" stroke="#fbf6eb" stroke-width="14"/>
+  <path d="M368 0h24v500h-24z" fill="#faf5eb"/>
+  <path d="M0 0h650v670L0 520z" fill="url(#sunlight)"/>
+  <path d="M1200 0h-95v535l95 70z" fill="#bda98f" opacity=".2"/>
+  <rect y="590" width="1200" height="310" fill="#bbab98"/>
+  <ellipse cx="600" cy="765" rx="525" ry="105" fill="#483c30" opacity=".22" filter="url(#shadow)"/>
+  <path d="M303 365q0-55 56-55h560q56 0 56 55v312H303z" fill="#958473"/>
+  <path d="M323 383q0-36 37-36h548q38 0 38 36v67H323z" fill="#a99a89"/>
+  <path d="M72 492q0-37 42-37h1004q42 0 42 37v267H72z" fill="#766555"/>
+  <path d="M45 530q0-37 40-37h1030q40 0 40 37v240H45z" fill="url(#linen)"/>
+  <path d="M80 554q0-23 28-23h1040q27 0 27 23v187H80z" fill="#faf7f0"/>
+  <path d="M100 727q125-50 285-38 230 17 386 55 178 44 344-16v48H100z" fill="#ded4c7"/>
+  <path d="M105 560q0-41 45-41h201q45 0 45 41v88H105z" fill="#f6f0e7"/>
+  <path d="M132 553q0-30 31-30h176q31 0 31 30v14H132z" fill="#fffdf9"/>
+  <path d="M389 551q0-39 43-39h210q43 0 43 39v90H389z" fill="#eee8de"/>
+  <path d="M417 545q0-27 30-27h179q30 0 30 27v13H417z" fill="#fffdf9"/>
+  <path d="M111 614q120-40 275 4v47q-150-32-275 9z" fill="#f5efe6" opacity=".72"/>
+  <path d="M70 770h1090v38H70z" fill="#6f5b47"/>
+  <path d="M103 806h24v94h-24zm1002 0h24v94h-24z" fill="#493b2e"/>
+  <path d="M895 492q50-108 100-2v48H895z" fill="#67705d"/>
+  <path d="M939 480q-39-78-75-98 47 8 80 74 3-76 52-109-31 56-22 122 22-55 74-63-48 24-61 88z" fill="#75816b"/>
+  <rect x="875" y="526" width="154" height="20" rx="4" fill="#9b7655"/>
+  <path d="M888 546h128v205H888z" fill="#b38c67"/>
+  <path d="M903 561h98v162h-98z" fill="#c4a17e"/>
+  <circle cx="973" cy="641" r="5" fill="#785e44"/>
+  <path d="M1080 524v224h94V524z" fill="#b28f6d"/>
+  <path d="M1058 520h137v15h-137z" fill="#d5c0a4"/>
+  <path d="M1171 0v190" stroke="#76634f" stroke-width="4"/>
+  <path d="M1122 188q49-85 98 0l-16 37h-66z" fill="#f4e5c8"/>
+</svg>
