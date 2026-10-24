@@ -56,3 +56,30 @@ npm run build
 - `server/server.js` Express API, authentication, uploads and chatbot endpoint
 - `server/data/` persistent catalogue created on first run
 - `server/uploads/` uploaded product images
+
+## Store-management updates (October 2026)
+
+This version adds admin tabs for Products, Categories, Customers & Orders, Offers, and Q & A. Product records support the Nooha Signature flag, homepage offer flag, multiple photos, badges, short descriptions, and size options with optional custom prices. Category pages are generated from catalogue categories, and the All Products page groups up to three products under each category with a “See all” link. The footer includes separate policy pages.
+
+### Run locally
+
+1. Install Node.js 20+.
+2. In `server/`, run `npm install`, copy `.env.example` to `.env`, set a unique `ADMIN_SECRET` and strong `ADMIN_PASSWORD`, then run `npm start`.
+3. In `client/`, run `npm install`, copy `.env.example` to `.env`, set `VITE_API_URL=http://localhost:5000`, then run `npm run dev`.
+4. Open the Vite URL and sign in to `/admin` with the credentials configured in the server `.env`.
+
+The project stores catalogue, offer settings, Q&A and order requests in JSON files under `server/data/`. Back up this folder and `server/uploads/` before deployment. Order requests are recorded for follow-up; a payment gateway is not configured. The policy pages included are starter copy and should be reviewed against the business's approved policies before publishing.
+
+### Build note
+
+A production build should be run after installing dependencies in your deployment environment. The uploaded `node_modules` did not contain the platform-specific Vite/Rolldown and TypeScript bindings required to complete a build in this workspace.
+
+## Product visibility, availability and purchase modes
+
+- **Available** controls stock status. Products marked unavailable show an Out of Stock badge and their online purchase controls are disabled.
+- **Visible on website** controls public catalogue visibility. Hidden products remain in the admin catalogue but are excluded from public product listings and public product-detail API routes.
+- **Online shopping / Enquiry mode** is the product purchase mode. Online shopping requires a price and supports cart/buy actions. Enquiry mode allows the price and compare-at price to be blank and displays an enquiry action instead of cart/checkout controls.
+- The previous **Can buy online** checkbox only saved the `onlinePurchase` field; it was not used to govern storefront purchase behavior. It has been replaced by the explicit mode toggle. Existing records are migrated compatibly: `onlinePurchase: false` is treated as Enquiry mode unless an explicit `enquiryMode` value exists.
+- The new toggle settings are saved with the product record through the admin API. Public API endpoints filter hidden products; admin endpoints continue to show all products.
+
+Before deployment, install dependencies in `client` and `server`, run the frontend production build, and test the admin save flow and storefront in a browser.
