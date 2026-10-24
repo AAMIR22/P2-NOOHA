@@ -30,7 +30,7 @@ body{font-size:15px;background:var(--paper);color:var(--ink)}
 .product-buy{border:0;padding-top:13px;gap:10px;align-items:center;flex-wrap:wrap}.product-buy strong{font-size:18px;color:#211f1c}.enquire-label{font-size:13px}
 .product-view-details{display:flex;align-items:center;justify-content:center;min-height:48px;border:1px solid #c58a45;border-radius:999px;color:#9b652e;padding:0 18px;flex:1;font-size:14px;transition:background .2s,color .2s}
 .product-view-details:hover{background:#211f1c;border-color:#211f1c;color:#fff}
-.product-tag{display:none}.rating{font-size:11px}
+.product-tag{display:inline-flex;align-items:center;max-width:calc(100% - 24px);white-space:normal;line-height:1.25}.rating{font-size:11px}
 .chat-launch{background:#211f1c;border:1px solid #3b352e;padding:13px 18px}.chat-launch:hover{background:#b66e2b}.chat-panel>header{background:#211f1c;border-bottom:3px solid #ed8735}
 .chat-input button{background:#ed8735}.chat-message.assistant{background:#f7eee5}.chat-disclaimer{font-size:11px}
 .social-dock{position:fixed;right:17px;bottom:118px;z-index:45;display:flex;flex-direction:column;gap:12px}
@@ -595,3 +595,22 @@ body{background:var(--paper);color:var(--ink)}
 .stock-detail-message p{margin:0;color:#756b5e;font-size:13px;line-height:1.6}
 .enquiry-mode-price{display:flex;align-items:center;gap:12px;min-height:34px}
 @media(max-width:700px){.product-toggle-panel{grid-template-columns:1fr}.mode-toggle-row{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:7px!important;padding:12px}.mode-toggle-row strong{font-size:11px}.mode-toggle-row small{font-size:10px}.switch-control{padding:11px}}
+
+/* Purchase-mode and admin editor refinements */
+.size-selection-hint{display:block;margin:.55rem 0 1rem;color:#866b50;font-size:.88rem;line-height:1.45}
+.btn:disabled,.btn.is-disabled{opacity:.48;cursor:not-allowed;pointer-events:none}
+.admin-editor-heading-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.25rem}
+.admin-editor-heading-row h2{margin:0}
+.admin-top-save{white-space:nowrap}
+@media(max-width:560px){.admin-editor-heading-row{align-items:stretch;flex-direction:column}.admin-top-save{width:100%}}
+
+/* Product search and product detail badge */
+.store-search,.admin-product-search{display:flex;flex-direction:column;gap:8px;margin:18px 0 28px;color:#6d685d;font-size:11px;max-width:520px}
+.store-search input,.admin-product-search input{width:100%;padding:14px 16px;border:1px solid #ded8ce;background:#fff;color:#302a24;border-radius:6px;outline-color:#74765c}
+.store-search input:focus,.admin-product-search input:focus{box-shadow:0 0 0 3px #74765c22}
+.detail-product-tag{display:inline-flex;align-self:flex-start;position:relative;margin:14px 0 0;background:#f0eee5;border:1px solid #ded9cb;color:#62664b;padding:8px 11px;font-size:10px;font-weight:700;letter-spacing:1px;border-radius:3px}
+.detail-image .product-tag{z-index:3;display:inline-block}
+
+/* Ensure product badges are visible on homepage product cards and the signature feature. */
+.product-image .product-tag{display:inline-flex;align-items:center;position:absolute;top:12px;left:12px;z-index:4;background:#fffaf2;color:#51412d;border:1px solid #e9ddca;padding:7px 10px;font-size:10px;line-height:1.25;letter-spacing:.08em;border-radius:3px;max-width:calc(100% - 24px);white-space:normal}
+.signature-product-tag{position:absolute;top:16px;left:16px;z-index:4;background:#fffaf2;color:#51412d;border:1px solid #e9ddca;padding:7px 10px;font-size:10px;letter-spacing:.08em;border-radius:3px}

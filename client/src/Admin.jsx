@@ -33,6 +33,7 @@ export function Admin() {
   const [login, setLogin] = useState({ username: 'admin', password: '' });
   const [error, setError] = useState('');
   const [items, setItems] = useState([]);
+  const [productSearch, setProductSearch] = useState('');
   const [form, setForm] = useState(blank);
   const [editing, setEditing] = useState('');
   const [busy, setBusy] = useState(false);
@@ -90,16 +91,21 @@ export function Admin() {
     setError('');
     try {
       const images = [...new Set([form.image, ...(form.images || [])].filter(Boolean))].slice(0, imageLimit);
-      if (!form.enquiryMode && (form.price === '' || form.price == null || !Number.isFinite(Number(form.price)) || Number(form.price) < 0)) {
-        setError('Price is required for online shopping mode. Switch to Enquiry mode if the product does not have a fixed price.');
+      if (!form.enquiryMode && (form.price === '' || form.price == null || !Number.isFinite(Number(form.price)) || Number(form.price) <= 0)) {
+        setError('Online shopping requires a price greater than ₹0. Switch to Enquiry mode if the product does not have a fixed price.');
+        setBusy(false);
+        return;
+      }
+      if (form.was != null && String(form.was).trim() !== '' && (!Number.isFinite(Number(form.was)) || Number(form.was) <= 0)) {
+        setError('Compare-at price must be greater than ₹0 when provided, or leave it blank.');
         setBusy(false);
         return;
       }
       const payload = {
         ...form,
         images,
-        price: form.price === '' ? null : Number(form.price),
-        was: form.was === '' ? null : Number(form.was),
+        price: form.price == null || String(form.price).trim() === '' ? null : Number(form.price),
+        was: form.was == null || String(form.was).trim() === '' ? null : Number(form.was),
         features: Array.isArray(form.features) ? form.features : form.features.split('\n').filter(Boolean)
       };
       const response = await fetch(`${API}/api/admin/products${editing ? `/${editing}` : ''}`, {
@@ -185,7 +191,7 @@ export function Admin() {
     setForm({
       ...product,
       visible: product.visible !== false,
-      enquiryMode: typeof product.enquiryMode === 'boolean' ? product.enquiryMode : product.onlinePurchase === false,
+      enquiryMode: typeof product.enquiryMode === 'boolean' ? product.enquiryMode : (product.onlinePurchase === false || product.price == null),
       images: Array.isArray(product.images) ? product.images : [],
       features: Array.isArray(product.features) ? product.features.join('\n') : product.features || ''
     });
@@ -239,7 +245,7 @@ export function Admin() {
         {tab==='Products' && <><div className="admin-stat"><Package /><div><strong>{items.length}</strong><span>Products in catalogue</span></div><div><strong>{items.filter(product => product.available).length}</strong><span>Marked available</span></div></div>
         <div className="admin-content-grid">
           <form className="admin-editor" onSubmit={save}>
-            <h2>{editing ? 'Edit product' : 'Add a product'}</h2>
+            <div className="admin-editor-heading-row"><h2>{editing ? 'Edit product' : 'Add a product'}</h2><button type="submit" disabled={busy || uploading} className="btn btn-dark admin-top-save"><Save size={16}/>{busy ? 'Saving…' : editing ? 'Save changes' : 'Add product'}</button></div>
             <div className="product-toggle-panel" aria-label="Product visibility and availability settings">
               <label className="switch-control"><span><strong>Available</strong><small>Turn off to mark out of stock</small></span><input type="checkbox" checked={!!form.available} onChange={event => setForm({ ...form, available: event.target.checked })} /><i aria-hidden="true" /></label>
               <label className="switch-control"><span><strong>Visible on website</strong><small>Hidden products are removed from public pages</small></span><input type="checkbox" checked={form.visible !== false} onChange={event => setForm({ ...form, visible: event.target.checked })} /><i aria-hidden="true" /></label>
@@ -248,12 +254,12 @@ export function Admin() {
             </div>
             <label>Product name<input required value={form.name} onChange={event => setForm({ ...form, name: event.target.value })} /></label>
             <div className="admin-two">
-              <label>Category<select value={form.category} onChange={event => setForm({ ...form, category: event.target.value })}><option>Pillows</option><option>Mattresses</option>{categories.filter(c=>!['Pillows','Mattresses'].includes(c)).map(c=><option key={c}>{c}</option>)}</select></label>
+              <label>Category<select value={form.category} onChange={event => setForm(current => ({ ...current, category: event.target.value }))}><option>Pillows</option><option>Mattresses</option>{categories.filter(c=>!['Pillows','Mattresses'].includes(c)).map(c=><option key={c}>{c}</option>)}</select></label>
               <label>Tag / badge<input value={form.tag} onChange={event => setForm({ ...form, tag: event.target.value })} placeholder="BEST SELLER" /></label>
             </div>
             <div className="admin-two">
-              <label>Price (₹)<input type="number" min="0" required={!form.enquiryMode} value={form.price ?? ''} onChange={event => setForm({ ...form, price: event.target.value })} placeholder={form.enquiryMode ? 'Optional in enquiry mode' : 'Required for online shopping'} /></label>
-              <label>Compare-at price (₹)<input type="number" min="0" value={form.was ?? ''} onChange={event => setForm({ ...form, was: event.target.value })} /></label>
+              <label>Price (₹)<input type="number" min="0.01" step="any" required={!form.enquiryMode} value={form.price ?? ''} onChange={event => setForm({ ...form, price: event.target.value })} placeholder={form.enquiryMode ? 'Optional in enquiry mode' : 'Required for online shopping'} /></label>
+              <label>Compare-at price (₹)<input type="number" min="0.01" step="any" value={form.was ?? ''} onChange={event => setForm({ ...form, was: event.target.value })} /></label>
             </div>
             <label className="mode-toggle-row"><span><strong>Online shopping</strong><small>Fixed price, cart and checkout</small></span><span className="mode-switch"><input aria-label="Switch between online shopping and enquiry mode" type="checkbox" checked={!!form.enquiryMode} onChange={event => setForm({ ...form, enquiryMode: event.target.checked })}/><i aria-hidden="true" /></span><span><strong>Enquiry mode</strong><small>Customers contact your team</small></span></label>
             <p className="admin-field-hint">{form.enquiryMode ? 'Price and compare-at price are optional. Any entered price will be shown; online purchase is disabled.' : 'Price is required. Compare-at price is optional.'}</p>
@@ -297,7 +303,8 @@ export function Admin() {
           </form>
           <div className="admin-product-list">
             <div className="admin-list-heading"><h2>Catalogue</h2><button className="btn btn-outline" onClick={startNew}><Plus size={16} /> New</button></div>
-            {items.map(product => (
+            <label className="admin-product-search"><span>Search products</span><input type="search" value={productSearch} onChange={e=>setProductSearch(e.target.value)} placeholder="Search by name, category, tag…"/></label>
+            {items.filter(product => `${product.name} ${product.category} ${product.tag||''} ${product.short||''}`.toLowerCase().includes(productSearch.trim().toLowerCase())).map(product => (
               <article className="admin-product-row" key={product.id}>
                 <img src={product.image} alt="" />
                 <div className="admin-product-info">

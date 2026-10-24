@@ -1,9 +1,13 @@
 {
   "offer": {
-    "enabled": false,
-    "wishText": "",
-    "title": "",
-    "banner": "",
+    "enabled": true,
+    "wishText": "HAppy OnaM",
+    "title": "ONAM OFFER VALID UNTIL 24-OCT-2026",
+    "banner": "https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&w=800&q=80",
     "productIds": []
-  }
+  },
+  "categories": [
+    "Pillows",
+    "Mattresses"
+  ]
 }
