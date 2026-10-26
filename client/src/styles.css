@@ -614,3 +614,252 @@ body{background:var(--paper);color:var(--ink)}
 /* Ensure product badges are visible on homepage product cards and the signature feature. */
 .product-image .product-tag{display:inline-flex;align-items:center;position:absolute;top:12px;left:12px;z-index:4;background:#fffaf2;color:#51412d;border:1px solid #e9ddca;padding:7px 10px;font-size:10px;line-height:1.25;letter-spacing:.08em;border-radius:3px;max-width:calc(100% - 24px);white-space:normal}
 .signature-product-tag{position:absolute;top:16px;left:16px;z-index:4;background:#fffaf2;color:#51412d;border:1px solid #e9ddca;padding:7px 10px;font-size:10px;letter-spacing:.08em;border-radius:3px}
+
+/* Cinematic Nooha mattress hero — layered background, headline and transparent cutout */
+body:has(.hero-cinematic) .announcement{display:none}
+body:has(.hero-cinematic) .header{position:absolute;z-index:12;top:0;left:0;right:0;width:100%;height:104px;background:transparent;color:#fff;border:0;box-shadow:none;padding:20px 5% 12px}
+body:has(.hero-cinematic) .header .nav a,
+body:has(.hero-cinematic) .header .nav-dropdown>button,
+body:has(.hero-cinematic) .header .icon-btn{color:#fff}
+body:has(.hero-cinematic) .header .bag-link{border:0;background:transparent;color:#fff}
+body:has(.hero-cinematic) .header .wordmark{filter:none}
+.hero-cinematic{position:relative;isolation:isolate;display:block;min-height: min(820px, 100svh);height: min(820px, 100svh);overflow:hidden;padding:0 5% 0;background:#9e330e;color:#fff}
+.cinematic-background,.cinematic-shade{position:absolute;inset:0}
+.cinematic-background{z-index:-3}
+.cinematic-background img{width:100%;height:100%;object-fit:cover;object-position:center 53%;animation:cinematic-bg-in 1.2s ease-out both}
+.cinematic-shade{z-index:-2;background:linear-gradient(90deg,rgba(75,18,4,.56) 0%,rgba(132,38,7,.25) 39%,rgba(190,67,12,.03) 68%,transparent 100%),linear-gradient(0deg,rgba(65,22,8,.12),transparent 30%)}
+.cinematic-copy{position:absolute;z-index:2;top:20.5%;left:5%;width:72%;max-width:1080px}
+.cinematic-eyebrow{display:flex;align-items:center;gap:15px;font-size:clamp(10px,.85vw,13px);font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:#fff;animation:cinematic-rise .7s .08s both}
+.cinematic-eyebrow i{display:inline-block;width:76px;height:1px;background:#fff;opacity:.9}
+.cinematic-copy h1{position:relative;margin:10px 0 0;font-family:inherit;font-size:clamp(88px,15.3vw,244px);font-weight:900;line-height:.83;letter-spacing:-.075em;white-space:nowrap;color:#fff;text-transform:uppercase;animation:cinematic-rise .8s .16s both}
+.cinematic-copy h1 span{display:block}
+.cinematic-copy h2{position:relative;z-index:1;margin:17px 0 8px;font-size:clamp(20px,2.25vw,36px);font-weight:700;line-height:1.15;letter-spacing:-.045em;animation:cinematic-rise .8s .24s both}
+.cinematic-copy>p{position:relative;z-index:1;margin:0;font-size:clamp(14px,1.35vw,21px);color:#fff;animation:cinematic-rise .8s .31s both}
+.cinematic-actions{display:flex;align-items:center;gap:24px;margin-top:25px;animation:cinematic-rise .8s .38s both}
+.cinematic-shop{display:inline-flex;align-items:center;justify-content:center;gap:13px;min-width:204px;min-height:58px;padding:0 25px;border-radius:999px;background:#fff;color:#201a17;font-size:15px;font-weight:700;transition:transform .2s,box-shadow .2s}
+.cinematic-shop:hover{transform:translateY(-2px);box-shadow:0 12px 30px #42180435}
+.cinematic-story{display:flex;align-items:center;gap:13px;color:#fff;font-size:13px;line-height:1.35}
+.cinematic-story>span{width:56px;height:56px;border:1px solid #ffffffb8;border-radius:50%;display:grid;place-items:center;transition:background .2s}
+.cinematic-story:hover>span{background:#ffffff24}
+.play-triangle{display:block;width:0;height:0;margin-left:4px;border-top:8px solid transparent;border-bottom:8px solid transparent;border-left:12px solid #fff}
+.cinematic-woman{position:absolute;z-index:3;right:5.8%;bottom:32%;width:min(58%,850px);height:64%;object-fit:contain;object-position:right bottom;pointer-events:none;filter:drop-shadow(0 12px 20px #32130516);animation:cinematic-woman-in 1s .12s cubic-bezier(.2,.7,.2,1) both}
+.cinematic-benefits{position:relative;z-index:5;margin:-60px 5% 0;padding:20px 22px;min-height:82px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border:1px solid rgba(255,255,255,.64);border-radius:22px;background:linear-gradient(115deg,rgba(255,252,247,.76),rgba(255,255,255,.56));backdrop-filter:blur(22px) saturate(145%);-webkit-backdrop-filter:blur(22px) saturate(145%);box-shadow:0 16px 45px rgba(53,26,10,.16),inset 0 1px 0 rgba(255,255,255,.72);color:#25211f}
+.cinematic-benefits>div{display:flex;justify-content:center;align-items:center;text-align:center;padding:0 14px}
+.cinematic-benefits>div+div{border-left:1px solid rgba(112,83,62,.34)}
+.cinematic-benefits strong{display:block;font-size:15px;line-height:1.35;letter-spacing:-.025em}
+.cinematic-benefits small{display:block;margin-top:4px;color:#77716b;font-size:12px;line-height:1.4}
+@keyframes cinematic-rise{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+@keyframes cinematic-woman-in{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes cinematic-bg-in{from{transform:scale(1.035);filter:saturate(.9)}to{transform:scale(1);filter:saturate(1)}}
+@media(min-width:1500px){.cinematic-copy{top:21%;left:5%}.cinematic-copy h1{font-size:clamp(220px,15.3vw,280px)}}
+@media(max-width:900px){
+ body:has(.hero-cinematic) .header{height:88px;padding:15px 5%}
+ .hero-cinematic{height:740px;min-height:740px}
+ .cinematic-copy{top:22%;width:92%;left:5%}
+ .cinematic-copy h1{font-size:clamp(78px,15vw,138px)}
+ .cinematic-copy h2{max-width:58%;font-size:clamp(20px,3vw,28px)}
+ .cinematic-copy>p{max-width:48%}
+ .cinematic-woman{right:0;width:58%;height:58%;bottom:25%;object-position:right bottom}
+ .cinematic-benefits{margin:-45px 4% 0;padding:17px 10px}
+ .cinematic-benefits strong{font-size:13px}.cinematic-benefits small{font-size:11px}
+}
+@media(max-width:650px){
+ body:has(.hero-cinematic) .header{height:76px;padding:13px 5%}
+ body:has(.hero-cinematic) .header .nav{background:#54200fef;border:1px solid #ffffff25}
+ .hero-cinematic{height:auto;min-height:790px;padding:0 5% 0}
+ .cinematic-background img{object-position:63% center}
+ .cinematic-shade{background:linear-gradient(180deg,rgba(73,19,5,.56),rgba(120,36,7,.16) 48%,rgba(45,16,6,.08))}
+ .cinematic-copy{top:17%;left:5%;width:90%}
+ .cinematic-eyebrow{font-size:9px;letter-spacing:.2em;gap:8px}.cinematic-eyebrow i{width:35px}
+ .cinematic-copy h1{font-size:clamp(61px,15.2vw,96px);letter-spacing:-.075em;margin-top:13px}
+ .cinematic-copy h2{max-width:100%;font-size:22px;margin-top:14px;line-height:1.15}
+ .cinematic-copy>p{max-width:100%;font-size:14px}
+ .cinematic-actions{gap:15px;margin-top:17px;flex-wrap:wrap}
+ .cinematic-shop{min-width:148px;min-height:47px;padding:0 17px;font-size:13px}
+ .cinematic-story>span{width:45px;height:45px}.cinematic-story{font-size:11px;gap:8px}
+ .cinematic-woman{right:-1%;bottom:17%;width:100%;height:46%;object-fit:contain;object-position:center bottom}
+ .cinematic-benefits{margin:-10px 4% 0;grid-template-columns:1fr;padding:7px 15px;border-radius:14px;gap:0}
+ .cinematic-benefits>div{padding:12px 5px}
+ .cinematic-benefits>div+div{border-left:0;border-top:1px solid rgba(112,83,62,.25)}
+ .cinematic-benefits strong{font-size:13px}.cinematic-benefits small{font-size:11px;margin-top:2px}
+}
+@media(prefers-reduced-motion:reduce){.cinematic-background img,.cinematic-copy h1,.cinematic-copy h2,.cinematic-copy>p,.cinematic-eyebrow,.cinematic-actions,.cinematic-woman{animation:none!important}}
+
+
+/* Responsive hero correction: keep the transparent woman visually seated on the
+   mattress as the viewport narrows, while preserving the wide desktop composition. */
+@media (min-width: 901px) and (max-width: 1200px) {
+  .hero-cinematic {
+    height: clamp(650px, 76vw, 760px);
+    min-height: 650px;
+  }
+  .cinematic-copy {
+    top: 20%;
+    width: 88%;
+    max-width: 850px;
+  }
+  .cinematic-copy h1 {
+    font-size: clamp(94px, 12.2vw, 146px);
+  }
+  .cinematic-copy h2 {
+    max-width: 54%;
+    font-size: clamp(21px, 2.3vw, 28px);
+  }
+  .cinematic-copy > p {
+    max-width: 48%;
+  }
+  .cinematic-woman {
+    right: 0;
+    bottom: 18%;
+    width: 61%;
+    height: 58%;
+    object-position: right bottom;
+  }
+  .cinematic-benefits {
+    margin-top: -42px;
+  }
+}
+
+@media (min-width: 651px) and (max-width: 900px) {
+  .hero-cinematic {
+    height: 760px;
+    min-height: 760px;
+  }
+  .cinematic-background img {
+    object-position: 60% center;
+  }
+  .cinematic-copy {
+    top: 17%;
+    left: 5%;
+    width: 90%;
+  }
+  .cinematic-copy h1 {
+    font-size: clamp(78px, 12.5vw, 112px);
+  }
+  .cinematic-copy h2 {
+    max-width: 58%;
+    font-size: clamp(19px, 2.8vw, 24px);
+  }
+  .cinematic-copy > p {
+    max-width: 52%;
+  }
+  .cinematic-woman {
+    right: -1%;
+    bottom: 13%;
+    width: 66%;
+    height: 54%;
+    object-position: right bottom;
+  }
+  .cinematic-benefits {
+    margin-top: -34px;
+  }
+}
+
+@media (max-width: 650px) {
+  .hero-cinematic {
+    height: 790px;
+    min-height: 790px;
+    overflow: hidden;
+  }
+  .cinematic-background img {
+    object-position: 62% center;
+  }
+  .cinematic-copy {
+    top: 15%;
+    left: 5%;
+    width: 90%;
+  }
+  .cinematic-copy h1 {
+    font-size: clamp(54px, 14.2vw, 68px);
+    letter-spacing: -0.078em;
+  }
+  .cinematic-copy h2 {
+    max-width: 95%;
+    font-size: clamp(18px, 5vw, 22px);
+  }
+  .cinematic-copy > p {
+    max-width: 95%;
+  }
+  .cinematic-actions {
+    margin-top: 14px;
+  }
+  .cinematic-woman {
+    right: -2%;
+    bottom: 13%;
+    width: 104%;
+    height: 47%;
+    object-fit: contain;
+    object-position: center bottom;
+  }
+  .cinematic-benefits {
+    margin-top: -10px;
+  }
+}
+
+@media (max-width: 380px) {
+  .cinematic-copy h1 {
+    font-size: 52px;
+  }
+  .cinematic-eyebrow {
+    letter-spacing: .13em;
+    font-size: 8px;
+  }
+  .cinematic-shop {
+    min-width: 136px;
+    padding: 0 14px;
+  }
+  .cinematic-actions {
+    gap: 10px;
+  }
+  .cinematic-woman {
+    bottom: 12%;
+    height: 45%;
+  }
+}
+
+
+/* Final mobile composition fix: anchor the cutout to the lower bed area.
+   The benefits panel overlays the lower edge, so the woman reads as seated
+   on the mattress rather than suspended between the copy and bed. */
+@media (max-width: 650px) {
+  .hero-cinematic {
+    height: 790px;
+    min-height: 790px;
+    overflow: hidden;
+  }
+
+  .cinematic-woman {
+    right: -2%;
+    bottom: 2%;
+    width: 108%;
+    height: 56%;
+    object-fit: contain;
+    object-position: center bottom;
+    transform: none;
+  }
+
+  .cinematic-benefits {
+    margin-top: -10px;
+  }
+}
+
+@media (max-width: 380px) {
+  .cinematic-woman {
+    right: -5%;
+    bottom: 2%;
+    width: 112%;
+    height: 54%;
+    object-position: center bottom;
+  }
+}
+
+@media (min-width: 651px) and (max-width: 900px) {
+  .cinematic-woman {
+    right: -1%;
+    bottom: 4%;
+    width: 70%;
+    height: 59%;
+    object-fit: contain;
+    object-position: right bottom;
+  }
+}
